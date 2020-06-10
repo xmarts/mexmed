@@ -1,0 +1,4 @@
+[submodule "l10n_mx_prevent_sign"]
+	path = l10n_mx_prevent_sign
+	url = git@github.com:xmarts/l10n_mx_prevent_sign.git
+	branch = 13.0
