@@ -30,5 +30,5 @@ class Product(models.Model):
         products_to_read = self.env['product.product'].browse(list(set(t[1] for t in to_read))).sudo().read(['display_name', 'uom_id', 'tracking'])
         products_to_read = {product['id']: product for product in products_to_read}
         to_add.extend([dict(t[0], **products_to_read[t[1]]) for t in to_read])
-        self.env["stock.production.lot"].search([("product_id", "=")])
+        #self.env["stock.production.lot"].search([("product_id", "=", )])
         return {product.pop('barcode'): product for product in products + to_add}
