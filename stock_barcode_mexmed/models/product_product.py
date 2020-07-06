@@ -20,7 +20,7 @@ class Product(models.Model):
         # for each packaging, grab the corresponding product data
         to_add = []
         to_read = []
-        products_by_id = {product['id']: product for product in products}
+        products_by_id = {product['id']: product.product_id for product in products}
         for packaging in packagings:
             if products_by_id.get(packaging['product_id']):
                 product = products_by_id[packaging['product_id']]
