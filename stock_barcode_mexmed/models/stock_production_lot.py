@@ -13,4 +13,4 @@ class StockProductionLot(models.Model):
     def get_barcode(self):
         for lot in self:
             if lot.name and lot.product_id.barcode:
-                lot.barcode = lot.product_id.barcode + "000000" + lot.name
+                lot.barcode = lot.product_id.barcode + "030321" + lot.name
