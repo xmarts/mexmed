@@ -1,0 +1,4 @@
+[submodule "xmarts/mexmed"]
+	path = xmarts/mexmed
+	url = git@github.com:xmarts/mexmed.git
+	branch = 13.0
