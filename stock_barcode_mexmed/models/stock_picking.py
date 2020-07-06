@@ -168,11 +168,14 @@ class StockPicking(models.Model):
     def on_barcode_scanned(self, barcode):
         if not self.env.company.nomenclature_id:
             # Logic for products
-            product = self.env['product.product'].search(
-                ['|', ('barcode', '=', barcode),
-                 ('default_code', '=', barcode)],
-                limit=1
+            product = False
+            lot_id = self.env['stock.production.lot'].search(
+                [
+                    ('name', '=', barcode[12:17]),
+                    ('product_id.barcode', '=', barcode[0:5])]
             )
+            if lot_id:
+                product = lot_id.product_id
             if product:
                 if self._check_product(product):
                     return
