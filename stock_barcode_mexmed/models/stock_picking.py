@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 from odoo.tools.float_utils import float_compare, float_round
 
 
@@ -177,6 +178,7 @@ class StockPicking(models.Model):
             if lot_id:
                 product = lot_id.product_id
             if product:
+                raise ValidationError("Sí está el producto pero no valida")
                 if self._check_product(product):
                     return
 
