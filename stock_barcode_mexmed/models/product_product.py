@@ -2,6 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import models, api
+from odoo.exceptions import ValidationError
 
 
 class Product(models.Model):
@@ -20,7 +21,7 @@ class Product(models.Model):
         # for each packaging, grab the corresponding product data
         to_add = []
         to_read = []
-        products_by_id = {product['product_id']: product for product in products}
+        products_by_id = {product['id']: product for product in products}
         for packaging in packagings:
             if products_by_id.get(packaging['product_id']):
                 product = products_by_id[packaging['product_id']]
@@ -31,4 +32,5 @@ class Product(models.Model):
         products_to_read = {product['id']: product for product in products_to_read}
         to_add.extend([dict(t[0], **products_to_read[t[1]]) for t in to_read])
         #self.env["stock.production.lot"].search([("product_id", "=", )])
+        raise ValidationError(products)
         return {product.pop('barcode'): product for product in products + to_add}
