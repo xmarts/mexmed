@@ -8,7 +8,7 @@
     "website": "https://xmarts.com",
     "license": "AGPL-3",
     "summary": """Reads barcode with lot and expiry date""",
-    "depends": ["stock_barcode", "product_expiry"],
+    "depends": ["product_expiry"],
     "data": [],
     "installable": True,
     "auto_install": False,
