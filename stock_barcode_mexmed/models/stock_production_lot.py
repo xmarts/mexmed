@@ -14,7 +14,7 @@ class StockProductionLot(models.Model):
         for lot in self:
             if lot.name and lot.product_id.barcode and lot.life_date:
                 date = fields.Datetime.to_string(lot.life_date)
-                date_code = "{}{}{}".format(date[8:10], date[5:7], date[2:4])
+                date_code = "{}{}{}".format(date[5:7], date[8:10], date[2:4])
                 lot.barcode = "{}{}{}".format(
                     lot.product_id.barcode[0:6],
                     date_code,
