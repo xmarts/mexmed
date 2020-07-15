@@ -53,7 +53,6 @@ class Product(models.Model):
                     product_ids = self._search(
                         [('default_code', '=', res.group(2))] + args,
                         limit=limit, access_rights_uid=name_get_uid)
-            # still no results, partner in context: search on supplier info as last hope to find something
             if not product_ids and self._context.get('partner_id'):
                 suppliers_ids = self.env['product.supplierinfo']._search([
                     ('name', '=', self._context.get('partner_id')),
@@ -67,7 +66,12 @@ class Product(models.Model):
                         limit=limit, access_rights_uid=name_get_uid)
             if not product_ids:
                 product_ids = self.env['stock.production.lot'].search(
-                    [('barcode', '=', name)], limit=limit).product_id.id
+                    [
+                        '|',
+                        ('barcode', '=', name),
+                        ('barcode', 'like', name[0:5]+'%'),
+                    ],
+                    limit=limit).product_id.id
         else:
             product_ids = self._search(args, limit=limit,
                                        access_rights_uid=name_get_uid)
