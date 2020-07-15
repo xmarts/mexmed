@@ -73,3 +73,7 @@ class Product(models.Model):
                                        access_rights_uid=name_get_uid)
         return models.lazy_name_get(
             self.browse(product_ids).with_user(name_get_uid))
+
+    lot_ids = fields.One2many(
+        "stock.production.lot", "product_id", string="Lotes"
+    )

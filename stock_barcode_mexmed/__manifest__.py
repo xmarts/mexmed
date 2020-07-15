@@ -9,7 +9,7 @@
     "license": "AGPL-3",
     "summary": """Reads barcode with lot and expiry date""",
     "depends": ["product_expiry"],
-    "data": [],
+    "data": ["views/product_template_view.xml"],
     "installable": True,
     "auto_install": False,
 }
