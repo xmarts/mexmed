@@ -3,3 +3,8 @@
 	url = git@github.com:xmarts/mexmed-addons.git
 	branch = 13.0
 
+
+[submodule "xmarts/mexmed_barcode"]
+	path = xmarts/mexmed_barcode
+	url = git@github.com:xmarts/mexmed_barcode.git
+	branch = 13.0
